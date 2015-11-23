@@ -15,11 +15,6 @@ import java.util.stream.Stream;
 public class DataImporter {
     private MongoCollection<Document> mongoCollection;
 
-    /**
-     * @param target :  At index 0 : target db
-     *               At index 1 : collection db
-     * @param source : path to the JSON source file.
-     */
     public DataImporter(String[] target, String source) {
         MongoClient mongoClient = new MongoClient("localhost", 27017);
         MongoDatabase mongoDatabase = mongoClient.getDatabase(target[0]);
@@ -30,11 +25,6 @@ public class DataImporter {
             e.printStackTrace();
         }
     }
-
-    /**
-     * @param fileName: path to the JSON source file.
-     * @throws IOException
-     */
     private void readFile(String fileName) throws IOException {
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
             stream.forEach(this::importData);
@@ -42,10 +32,6 @@ public class DataImporter {
             e.printStackTrace();
         }
     }
-
-    /**
-     * @param string : Single JSON document to add.
-     */
     private void importData(String string) {
         Document document = Document.parse(string);
         mongoCollection.insertOne(document);
