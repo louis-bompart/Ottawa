@@ -18,9 +18,6 @@ import java.util.Objects;
 public class MongoRequest {
 
     private MongoCollection<Document> mongoCollection;
-
-    private final Block<Document> printBlock = document -> System.out.println(document.toJson());
-
     @FXML
     private javafx.scene.control.ComboBox<String> comboBoxPrice;
     @FXML
@@ -71,10 +68,17 @@ public class MongoRequest {
 
         if(!Objects.equals(date.getPromptText(), ""))
         {
-
+            //TODO DANG IT ! DO IT FAGGOT !
+            System.out.println("Oups, date not implemented yet");
         }
-        FindIterable<Document> iterable = mongoCollection.find(request);
-        iterable.forEach(printBlock);
+        SharedVariables.iterable = mongoCollection.find(request);
+        Stage stage = new Stage();
+        mongodb.View.ResultDisplay resultDisplay = new mongodb.View.ResultDisplay();
+        try {
+            resultDisplay.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         ((Stage)city.getScene().getWindow()).close();
     }
 }
