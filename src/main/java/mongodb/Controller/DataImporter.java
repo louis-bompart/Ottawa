@@ -39,6 +39,7 @@ public class DataImporter {
         if(checkData()) {
             MongoClient mongoClient = new MongoClient("localhost", 27017);
             MongoDatabase mongoDatabase = mongoClient.getDatabase(database.getText());
+            SharedVariables.mongoDatabase = mongoDatabase;
             mongoCollection = mongoDatabase.getCollection(collection.getText());
             long nbofDocs = mongoCollection.count();
                 readFile(filePath.getText());

@@ -25,6 +25,7 @@ public class ChangeCollection {
             MongoClient mongoClient = new MongoClient("localhost", 27017);
             MongoDatabase mongoDatabase = mongoClient.getDatabase(database.getText());
             SharedVariables.mongoCollection = mongoDatabase.getCollection(collection.getText());
+            SharedVariables.mongoDatabase = mongoDatabase;
             ((Stage)database.getScene().getWindow()).close();
         }
     }

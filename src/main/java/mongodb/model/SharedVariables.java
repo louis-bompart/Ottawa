@@ -2,6 +2,7 @@ package mongodb.model;
 
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 
 /**
@@ -9,5 +10,6 @@ import org.bson.Document;
  */
 public class SharedVariables {
     public static MongoCollection mongoCollection;
+    public static MongoDatabase mongoDatabase;
     public static FindIterable<Document> iterable;
 }

@@ -7,34 +7,34 @@ import org.bson.Document;
  */
 public class PermitPermit {
 
-    private String suffix;
-    private String municipality;
+    private final String suffix;
+    private final String municipality;
     //month ignored
-    private String applType;
-    private String blgType;
-    private String lot;
+    private final String applType;
+    private final String blgType;
+    private final String lot;
     //year ignored
     //fileName kinda useless
-    private double unitValue;
-    private String issuedDate;
+    private String unitValue;
+    private final String issuedDate;
     //city useless
-    private int totalFT2;
-    private int totalUnit;
-    private String contractor;
-    private String postalCode;
+    private final int totalFT2;
+    private final int totalUnit;
+    private final String contractor;
+    private final String postalCode;
     //location ignored, redundancy
-    private int permit;
+    private final int permit;
     //housenumber ignored
     //ROAD ignored
-    private int totalValue;//VALUE
-    private String plan;
-    private int unitFT2;
-    private String ward;
-    private int du;
-    private double unitCost;
-    private String description;
-    private String keyword;
-    private String streetNumber;
+    private final String totalValue;//VALUE
+    private final String plan;
+    private String unitFT2;
+    private final String ward;
+    private final int du;
+    private String unitCost;
+    private final String description;
+    private final String keyword;
+    private final String streetNumber;
 
     public String getSuffix() {
         return suffix;
@@ -56,7 +56,7 @@ public class PermitPermit {
         return lot;
     }
 
-    public double getUnitValue() {
+    public String getUnitValue() {
         return unitValue;
     }
 
@@ -84,7 +84,7 @@ public class PermitPermit {
         return permit;
     }
 
-    public int getTotalValue() {
+    public String getTotalValue() {
         return totalValue;
     }
 
@@ -92,7 +92,7 @@ public class PermitPermit {
         return plan;
     }
 
-    public int getUnitFT2() {
+    public String getUnitFT2() {
         return unitFT2;
     }
 
@@ -104,7 +104,7 @@ public class PermitPermit {
         return du;
     }
 
-    public double getUnitCost() {
+    public String getUnitCost() {
         return unitCost;
     }
 
@@ -124,7 +124,7 @@ public class PermitPermit {
         return road;
     }
 
-    private String road;
+    private final String road;
 
     public PermitPermit(Document document) {
         suffix=document.getString("suffix");
@@ -139,7 +139,7 @@ public class PermitPermit {
         contractor=document.getString("CONTRACTOR");
         postalCode=document.getString("PC");
         permit=document.getInteger("PERMIT");
-        totalValue=document.getInteger("VALUE");
+        totalValue=String.valueOf(document.get("VALUE"));
         plan=document.getString("PLAN");
         ward=document.getString("WARD");
         description=document.getString("DESCRIPTION");
@@ -147,10 +147,10 @@ public class PermitPermit {
         streetNumber=document.getString("ST");
         road=document.getString("road");
         if(document.get("COST_unit")!=null)
-            unitCost=document.getDouble("COST_unit");
+            unitCost=String.valueOf(document.get("COST_unit"));
         if(document.get("VALUE_UNIT")!=null)
-            unitValue=document.getDouble("VALUE_unit");
+            unitValue=String.valueOf(document.get("VALUE_unit"));
         if(document.get("FT2_unit")!=null)
-            unitFT2=document.getInteger("FT2_unit");
+            unitFT2=String.valueOf(document.get("FT2_unit"));
     }
 }

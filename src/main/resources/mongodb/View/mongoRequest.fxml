@@ -17,12 +17,25 @@
       <TextField fx:id="contractor" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <TextField fx:id="city" GridPane.columnIndex="1" GridPane.rowIndex="2" />
       <TextField fx:id="price" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-      <DatePicker fx:id="date" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <DatePicker fx:id="datePicker" GridPane.columnIndex="1" GridPane.rowIndex="4" />
       <ComboBox fx:id="comboBoxPrice" value="=" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-      <ComboBox fx:id="comboBoxDate" value="=" GridPane.columnIndex="2" GridPane.rowIndex="4" />
       <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#doRequest" text="Validate" GridPane.columnIndex="2" GridPane.rowIndex="6" />
    </children>
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
    </padding>
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
 </GridPane>

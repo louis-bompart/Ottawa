@@ -43,4 +43,16 @@ public class Home {
             e.printStackTrace();
         }
     }
+    @FXML
+    public void doStats(){
+
+        Stage stage = new Stage();
+        mongodb.View.ShowStatistics showStatistics = new mongodb.View.ShowStatistics();
+        try {
+            showStatistics.start(stage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

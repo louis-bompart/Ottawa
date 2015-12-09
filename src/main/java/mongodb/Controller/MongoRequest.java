@@ -6,22 +6,24 @@ import com.mongodb.client.MongoCollection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.stage.Stage;
 import mongodb.model.SharedVariables;
 import org.bson.Document;
 
+import java.net.URL;
+import java.time.LocalDate;
 import java.util.Objects;
+import java.util.ResourceBundle;
 
 /**
  * Created by louis on 04/12/2015.
  */
-public class MongoRequest {
+public class MongoRequest implements Initializable{
 
     private MongoCollection<Document> mongoCollection;
     @FXML
     private javafx.scene.control.ComboBox<String> comboBoxPrice;
-    @FXML
-    private javafx.scene.control.ComboBox<String> comboBoxDate;
     @FXML
     private javafx.scene.control.TextField contractor;
     @FXML
@@ -29,35 +31,35 @@ public class MongoRequest {
     @FXML
     private javafx.scene.control.TextField price;
     @FXML
-    private javafx.scene.control.DatePicker date;
+    private javafx.scene.control.DatePicker datePicker;
 
     /**
      *
      */
-    public void initialize() {
+    public void initialize(URL location, ResourceBundle resources) {
         ObservableList<String> stringObservableValue = FXCollections.observableArrayList(
                 "=",
                 "<",
                 ">"
         );
         comboBoxPrice.setItems(stringObservableValue);
-        comboBoxDate.setItems(stringObservableValue);
         mongoCollection = SharedVariables.mongoCollection;
+
     }
 
     public void doRequest()
     {
         Document request = new Document();
         if (!Objects.equals(price.getText(), "")) {
-            switch (comboBoxDate.getSelectionModel().getSelectedItem()){
+            switch (comboBoxPrice.getSelectionModel().getSelectedItem()){
                 case "=":
-                    request.append("permits.COST_unit",Double.parseDouble(price.getText()));
+                    request.append("permits.VALUE",Double.parseDouble(price.getText()));
                     break;
                 case "<":
-                    request.append("permits.COST_unit",new Document("$lt",Double.parseDouble(price.getText())));
+                    request.append("permits.VALUE",new Document("$lt",Double.parseDouble(price.getText())));
                     break;
                 case ">":
-                    request.append("permits.COST_unit",new Document("$gt",Double.parseDouble(price.getText())));
+                    request.append("permits.VALUE",new Document("$gt",Double.parseDouble(price.getText())));
                     break;
             }
         }
@@ -66,10 +68,21 @@ public class MongoRequest {
         if(!Objects.equals(contractor.getText(), ""))
             request.append("permits.CONTRACTOR", contractor.getText());
 
-        if(!Objects.equals(date.getPromptText(), ""))
+        if(datePicker.getValue()!=null)
         {
-            //TODO DANG IT ! DO IT FAGGOT !
-            System.out.println("Oups, date not implemented yet");
+            LocalDate date = datePicker.getValue();
+            String toRequest = date.getYear() +"-";
+            if(date.getMonthValue()<10)
+            {
+                toRequest+="0";
+            }
+            toRequest+=date.getMonthValue()+"-";
+            if(date.getDayOfMonth()<10)
+            {
+                toRequest+="0";
+            }
+            toRequest+=date.getDayOfMonth();
+            request.append("permits.ISSUED_DATE",toRequest);
         }
         SharedVariables.iterable = mongoCollection.find(request);
         Stage stage = new Stage();
