@@ -1,4 +1,4 @@
-package mongodb.model;
+package common.model;
 
 import org.bson.BsonArray;
 import org.bson.Document;

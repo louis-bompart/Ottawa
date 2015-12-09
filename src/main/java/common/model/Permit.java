@@ -1,9 +1,7 @@
-package mongodb.model;
+package common.model;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
-
-import javax.print.Doc;
 
 /**
  * Created by louis on 08/12/2015.

@@ -6,15 +6,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.PieChart;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
-import javafx.stage.Stage;
-import mongodb.model.Permit;
+import common.model.Permit;
 import mongodb.model.SharedVariables;
 import org.bson.Document;
-
-import java.util.Objects;
 
 /**
  * Created by louis on 08/12/2015.
