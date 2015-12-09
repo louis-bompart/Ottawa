@@ -19,4 +19,24 @@ public class PermitProperties {
         longitude=document.getDouble("lng");
         accuracy=document.getInteger("accuracy");
     }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public int getAccuracy() {
+        return accuracy;
+    }
 }
