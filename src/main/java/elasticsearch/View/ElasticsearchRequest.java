@@ -1,14 +1,14 @@
-package org.Ottawa.mongodb.view; /**
+package elasticsearch.View; /**
  * Created by louis on 07/12/2015.
  */
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class MongoRequest extends Application {
+public class ElasticsearchRequest extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
